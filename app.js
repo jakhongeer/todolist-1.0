@@ -9,9 +9,9 @@ app.get("/", function(req, res) {
     console.log(today.getDay())
 
     if (today.getDay >= 5) {
-        res.send("Yay it's the weekend!!!"); 
+        res.sendFile(__dirname + "/weekend.html")
     } else {
-        res.send("Boo! I have to work!")
+        res.sendFile(__dirname + "/weekday.html")
     }
 })
 
