@@ -1,0 +1,19 @@
+{
+  "name": "todolist-1.0",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jakhongeer/todolist-1.0.git"
+  },
+  "author": "Jakhongir Nagmatov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jakhongeer/todolist-1.0/issues"
+  },
+  "homepage": "https://github.com/jakhongeer/todolist-1.0#readme"
+}
