@@ -7,7 +7,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.set("view engine", "ejs");
 
 var item = "";
-var items = [];
+var items = ["Get up at 7 am", "Go to uni", "Go to home"];
 
 app.get("/", function (req, res) {
   var today = new Date();
