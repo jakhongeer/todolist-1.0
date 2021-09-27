@@ -7,8 +7,15 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>
-       It's a  <%= kindOfDay%>
-    </h1>
+    <%if (kindOfDay === "Saturday" || kindOfDay === "Sunday") {%>
+        <h1 style="color: yellow">
+            It's a  <%= kindOfDay %>
+         </h1>
+    <%} else {%>
+        <h1 style="color: slateblue">
+            It's a  <%= kindOfDay%>
+         </h1>
+    <%}%>
+    
 </body>
 </html>
