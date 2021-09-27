@@ -6,6 +6,8 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }))
 app.set("view engine", "ejs");
 
+app.use(express.static("public"))
+
 var item = "";
 var items = ["Get up at 7 am", "Go to uni", "Go to home"];
 
