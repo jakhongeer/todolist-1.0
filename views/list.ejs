@@ -15,18 +15,21 @@
 
     <div class="box">
         <% for (var i = 0; i < newListItems.length; i++) { %>
-            <p class="item"><%= newListItems[i] %></p>
+            <div class="item">
+                <input type="checkbox">
+                <p><%= newListItems[i] %></p>
+            </div>
+            
         <%}%>
-    </div>
-        
     
-
-    <form class="" action="/" method="post">
         
-        <input type="text" name="newItem">
+    <form class="item" action="/" method="post">
+        
+        <input type="text" name="newItem" placeholder="New Item">
 
-        <button type="submit" name="button">Submit</button>
+        <button type="submit" name="button">+</button>
     </form>
+</div>
     
 </body>
 </html> 
