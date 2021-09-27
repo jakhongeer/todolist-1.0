@@ -7,15 +7,23 @@
     <title>Document</title>
 </head>
 <body>
-    <%if (kindOfDay === "Saturday" || kindOfDay === "Sunday") {%>
-        <h1 style="color: yellow">
-            It's a  <%= kindOfDay %>
-         </h1>
-    <%} else {%>
-        <h1 style="color: slateblue">
-            It's a  <%= kindOfDay%>
-         </h1>
-    <%}%>
+    <h1><%= kindOfDay  %> </h1>
+
+    <ul>
+        <li>Get up at 7 am</li>
+        <li>Go to uni</li>
+        <li>Go to home</li>
+        <% for (var i = 0; i < newListItems.length; i++) { %>
+            <li><%= newListItems[i] %></li>
+        <%}%>
+    </ul>
+
+    <form class="" action="/" method="post">
+        
+        <input type="text" name="newItem">
+
+        <button type="submit" name="button">Submit</button>
+    </form>
     
 </body>
-</html>
+</html> 
