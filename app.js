@@ -9,18 +9,18 @@ app.set("view engine", "ejs");
 
 app.use(express.static("public"));
 
-let item = "";
-let items = ["Get up at 7 am", "Go to uni", "Go to home"];
-let workItems = [];
+
+const items = ["Get up at 7 am", "Go to uni", "Go to home"];
+const workItems = [];
 
 app.get("/", function (req, res) {
-  let day = date.getDate();
+  const day = date.getDate();
 
   res.render("list", { listTitle: day, newListItems: items });
 });
 
 app.post("/", function (req, res) {
-  let item = req.body.newItem;
+  const item = req.body.newItem;
 
   if (req.body.list === "Work") {
     workItems.push(item);
