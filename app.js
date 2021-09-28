@@ -13,17 +13,7 @@ let items = ["Get up at 7 am", "Go to uni", "Go to home"];
 let workItems = [];
 
 app.get("/", function (req, res) {
-  let today = new Date();
-  currentDay = today.getDay();
-  let day = "";
-
-  let options = {
-      weekday : "long",
-      day : "numeric",
-      month : "long",
-  };
   
-  day = today.toLocaleDateString("en-US", options);
   res.render("list", {listTitle: day, newListItems: items});
 });
 
