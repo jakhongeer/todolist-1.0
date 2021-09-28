@@ -13,9 +13,7 @@ function getDate() {
       month : "long",
   };
   
-  day = today.toLocaleDateString("en-US", options);
-
-  return day;
+  return today.toLocaleDateString("en-US", options);
 }
 
 
@@ -29,9 +27,5 @@ function getDay() {
         weekday : "long",
     };
     
-    day = today.toLocaleDateString("en-US", options);
-  
-    return day;
-  }
-
-  console.log(module.exports)
+    return today.toLocaleDateString("en-US", options);
+}
