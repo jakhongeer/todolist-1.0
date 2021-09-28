@@ -14,12 +14,12 @@ let items = ["Get up at 7 am", "Go to uni", "Go to home"];
 let workItems = [];
 
 app.get("/", function (req, res) {
+  let day = date.getDate();
   
   res.render("list", {listTitle: day, newListItems: items});
 });
 
 app.post("/", function(req, res) {
-    console.log(req.body)
     let item = req.body.newItem;
     
     if (req.body.list === "Work") {
