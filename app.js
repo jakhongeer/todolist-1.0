@@ -8,16 +8,16 @@ app.set("view engine", "ejs");
 
 app.use(express.static("public"))
 
-var item = "";
-var items = ["Get up at 7 am", "Go to uni", "Go to home"];
-var workItems = [];
+let item = "";
+let items = ["Get up at 7 am", "Go to uni", "Go to home"];
+let workItems = [];
 
 app.get("/", function (req, res) {
-  var today = new Date();
+  let today = new Date();
   currentDay = today.getDay();
-  var day = "";
+  let day = "";
 
-  var options = {
+  let options = {
       weekday : "long",
       day : "numeric",
       month : "long",
@@ -28,7 +28,8 @@ app.get("/", function (req, res) {
 });
 
 app.post("/", function(req, res) {
-    item = req.body.newItem;
+    console.log(req.body)
+    let item = req.body.newItem;
     
     if (req.body.list === "Work") {
         workItems.push(item);
@@ -41,7 +42,7 @@ app.post("/", function(req, res) {
 })
 
 app.get("/work", function(req, res) {
-    res.render("list", {listTitle: "Work List", newListItems: workItems});
+    res.render("list", {listTitle: "Work", newListItems: workItems});
 })
 
 
