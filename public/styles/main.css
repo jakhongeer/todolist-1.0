@@ -65,8 +65,12 @@ html {
     background-color: #A683E3;
     color: #fff;
     font-size: 30px;
-    padding-bottom: 6px;
     border-width: 0;
+    transition: transform .2s;
+  }
+
+  button:hover {
+    transform: scale(1.2);
   }
   
   input[type="text"] {
