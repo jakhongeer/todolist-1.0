@@ -10,7 +10,7 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 
 
-const items = ["Get up at 7 am", "Go to uni", "Go to home"];
+const items = ["Get up at 7 am", "Go to uni", "Get back to home"];
 const workItems = [];
 
 app.get("/", function (req, res) {
