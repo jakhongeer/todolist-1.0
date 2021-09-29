@@ -22,7 +22,7 @@ app.get("/", function (req, res) {
 app.post("/", function (req, res) {
   const item = req.body.newItem;
 
-  if (req.body.list === "Work") {
+  if (req.body.list === "Work List") {
     workItems.push(item);
     res.redirect("/work");
   } else {
@@ -32,7 +32,7 @@ app.post("/", function (req, res) {
 });
 
 app.get("/work", function (req, res) {
-  res.render("list", { listTitle: "Work", newListItems: workItems });
+  res.render("list", { listTitle: "Work List", newListItems: workItems });
 });
 
 app.get("/about", function (req, res) {
