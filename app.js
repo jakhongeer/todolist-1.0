@@ -34,17 +34,27 @@ const thirdItem = new Item({
   name: "<-- Hit the - to remove an item"
 })
 
-// Item.insertMany([firstItem, secondItem, thirdItem], function (err){
-//   if (err) {
-//     console.log(err)
-//   } else {
-//     console.log("Success!")
-//   }
-// })
+
 app.get("/", function (req, res) {
+
   
   Item.find({}, function(err, foundItems) {
-    res.render("list", { listTitle: "Today", newListItems: foundItems });
+
+    if (foundItems.length === 0) {
+      Item.insertMany([firstItem, secondItem, thirdItem], function (err){
+        if (err) {
+          console.log(err)
+        } else {
+          console.log("Success!")
+        }
+      });
+      res.redirect("/");
+
+    } else {
+      res.render("list", { listTitle: "Today", newListItems: foundItems });
+    }
+
+    
   })
   
 });
