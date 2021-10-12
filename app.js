@@ -16,7 +16,31 @@ const workItems = [];
 
 mongoose.connect("mongodb://localhost:27017/todolistDB", {useNewUrlParser: true});
 
+const itemsSchema = new mongoose.Schema({
+  name: String
+})
 
+const Item = new mongoose.model("Item", itemsSchema);
+
+const firstItem = new Item({
+  name: "Get up at 6"
+})
+
+const secondItem = new Item({
+  name: "Go jogging"
+})
+
+const thirdItem = new Item({
+  name: "Read a book"
+})
+
+Item.insertMany([firstItem, secondItem, thirdItem], function (err){
+  if (err) {
+    console.log(err)
+  } else {
+    console.log("Success!")
+  }
+})
 app.get("/", function (req, res) {
   
 
