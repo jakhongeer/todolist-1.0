@@ -13,6 +13,9 @@ app.use(express.static("public"));
 const items = ["Get up at 7 am", "Go to uni", "Get back to home"];
 const workItems = [];
 
+mongoose.connect("mongodb://localhost:27017/todolistDB", {useNewUrlParser: true});
+
+
 app.get("/", function (req, res) {
   const day = date.getDate();
 
