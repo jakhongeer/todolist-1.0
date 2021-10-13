@@ -34,6 +34,12 @@ const thirdItem = new Item({
   name: "<-- Hit the - to remove an item"
 })
 
+const listSchema = new mongoose.Schema({
+  name: String,
+  item: [itemsSchema]
+})
+
+const List = new mongoose.model("List", listSchema);
 
 app.get("/", function (req, res) {
 
@@ -92,7 +98,7 @@ app.post("/delete", function(req, res) {
 })
 
 app.get('/:customName', function(req, res) {
-  console.log(req.params.customName)
+  const customName = req.params.customName
 })
 
 app.get("/about", function (req, res) {
