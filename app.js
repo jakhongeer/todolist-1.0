@@ -36,8 +36,10 @@ const thirdItem = new Item({
 
 const listSchema = new mongoose.Schema({
   name: String,
-  item: [itemsSchema]
+  items: [itemsSchema]
 })
+
+defaultItems = [firstItem, secondItem, thirdItem];
 
 const List = new mongoose.model("List", listSchema);
 
@@ -47,7 +49,7 @@ app.get("/", function (req, res) {
   Item.find({}, function(err, foundItems) {
 
     if (foundItems.length === 0) {
-      Item.insertMany([firstItem, secondItem, thirdItem], function (err){
+      Item.insertMany(defaultItems, function (err){
         if (err) {
           console.log(err)
         } else {
@@ -98,8 +100,15 @@ app.post("/delete", function(req, res) {
 })
 
 app.get('/:customName', function(req, res) {
+
   const customName = req.params.customName
-})
+
+    const list = new List({
+      name: customName,  
+      items: defaultItems  
+  })
+  list.save();
+});
 
 app.get("/about", function (req, res) {
   res.render("about");
