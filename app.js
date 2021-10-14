@@ -43,7 +43,7 @@ const listSchema = new mongoose.Schema({
   items: [itemsSchema]
 })
 
-defaultItems = [firstItem, secondItem, thirdItem];
+const defaultItems = [firstItem, secondItem, thirdItem];
 
 const List = new mongoose.model("List", listSchema);
 
@@ -71,22 +71,52 @@ app.get("/", function (req, res) {
   
 });
 
+
+app.get("/:customName", function(req, res) {
+
+  const customName = req.params.customName
+
+  List.findOne({name: customName}, function(err, listFound) {
+    if (!err) {
+      if (!listFound){
+        //Create the list 
+        const list = new List({
+          name: customName,  
+          items: defaultItems  
+        })
+        list.save();
+        console.log("Created the list!")
+        res.redirect("/" + customName)
+      } else {
+          //Show the existing list
+          res.render('list', { listTitle: listFound.name, newListItems: listFound.items })
+          console.log("Exists list!")
+      }
+    } 
+  })
+    
+});
+
 app.post("/", function (req, res) {
   const itemName = req.body.newItem;
+  const listName = req.body.list;
 
   const item = new Item({
     name: itemName
   })
 
-  item.save(); 
-
-  if (req.body.list === "Work List") {
-    workItems.push(item);
-    res.redirect("/work");
-  } else {
-    items.push(item);
+  if (listName === "Today") {
+    item.save();
     res.redirect("/");
+  } else {
+    List.findOne({name: listName}, function (err, foundList) {
+      foundList.items.push(item);
+      foundList.save();
+      res.redirect("/" + listName);
+    })
   }
+   
+
 });
 
 app.post("/delete", function(req, res) {
@@ -102,33 +132,6 @@ app.post("/delete", function(req, res) {
     }
   })
 })
-
-app.get('/:customName', function(req, res) {
-
-  const customName = req.params.customName.capitalize()
-
-  List.findOne({name: customName}, function(err, foundList) {
-    if (!err) {
-      if (!foundList){
-        //Create the list 
-        const list = new List({
-          name: customName,  
-          items: defaultItems  
-        })
-        list.save();
-        res.redirect("/" + customName)
-      } else {
-        //Show the existing list
-        res.render('list', { listTitle: foundList.name, newListItems: foundList.items })
-      }
-    } 
-  })
-    
-});
-
-app.get("/about", function (req, res) {
-  res.render("about");
-});
 
 app.listen(3000, function () {
   console.log("Server is running on port 3000...");
