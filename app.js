@@ -11,6 +11,10 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 
 
+
+String.prototype.capitalize = function() {
+  return this.charAt(0).toUpperCase() + this.slice(1);
+}
 const items = ["Get up at 7 am", "Go to uni", "Get back to home"];
 const workItems = [];
 
@@ -101,7 +105,7 @@ app.post("/delete", function(req, res) {
 
 app.get('/:customName', function(req, res) {
 
-  const customName = req.params.customName
+  const customName = req.params.customName.capitalize()
 
   List.findOne({name: customName}, function(err, foundList) {
     if (!err) {
