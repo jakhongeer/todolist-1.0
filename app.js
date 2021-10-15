@@ -11,13 +11,6 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 
 
-
-String.prototype.capitalize = function() {
-  return this.charAt(0).toUpperCase() + this.slice(1);
-}
-const items = ["Get up at 7 am", "Go to uni", "Get back to home"];
-const workItems = [];
-
 mongoose.connect("mongodb://localhost:27017/todolistDB", {useNewUrlParser: true});
 
 const itemsSchema = new mongoose.Schema({
