@@ -121,6 +121,7 @@ app.post("/", function (req, res) {
 
 app.post("/delete", function(req, res) {
   const checkedItem = req.body.checkbox;
+  const listName = req.body.listName;
 
   Item.findByIdAndRemove(checkedItem, function(err) {
     if(err){
