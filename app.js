@@ -51,7 +51,7 @@ app.get("/", function (req, res) {
 
   
   Item.find({}, function(err, foundItems) {
-
+    //if the items are not found, then add default three items from defaultitems array. Else just go to that page
     if (foundItems.length === 0) {
       Item.insertMany(defaultItems, function (err){
         if (err) {
@@ -73,7 +73,7 @@ app.get("/", function (req, res) {
 
 
 app.get("/:customName", function(req, res) {
-
+  // when after "/" in the url written name of the list, that list will be created or will go to that list if exists.
   const customName = req.params.customName
 
   List.findOne({name: customName}, function(err, listFound) {
@@ -85,12 +85,10 @@ app.get("/:customName", function(req, res) {
           items: defaultItems  
         })
         list.save();
-        console.log("Created the list!")
         res.redirect("/" + customName)
       } else {
           //Show the existing list
           res.render('list', { listTitle: listFound.name, newListItems: listFound.items })
-          console.log("Exists list!")
       }
     } 
   })
@@ -106,6 +104,7 @@ app.post("/", function (req, res) {
   })
 
   if (listName === "Today") {
+    //When + button clicks, item saves in the list which user in there.
     item.save();
     res.redirect("/");
   } else {
@@ -122,8 +121,10 @@ app.post("/", function (req, res) {
 app.post("/delete", function(req, res) {
   const checkedItemId = req.body.checkbox;
   const listName = req.body.listName;
-
+    
   if (listName === "Today") {
+  //if item ticks, remove it from that list.
+
     Item.findByIdAndRemove(checkedItemId, function(err) {
       if(err){
         console.log(error)
