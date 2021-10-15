@@ -65,20 +65,20 @@ app.get("/", function (req, res) {
 });
 
 
-app.get("/:customName", function(req, res) {
+app.get("/:customListname", function(req, res) {
   // when after "/" in the url written name of the list, that list will be created or will go to that list if exists.
-  const customName = req.params.customName
+  const customListname = _.capitalize(req.params.customListname);
 
-  List.findOne({name: customName}, function(err, listFound) {
+  List.findOne({name: customListname}, function(err, listFound) {
     if (!err) {
       if (!listFound){
         //Create the list 
         const list = new List({
-          name: customName,  
+          name: customListname,  
           items: defaultItems  
         })
         list.save();
-        res.redirect("/" + customName)
+        res.redirect("/" + customListname)
       } else {
           //Show the existing list
           res.render('list', { listTitle: listFound.name, newListItems: listFound.items })
