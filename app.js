@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const _ = require("lodash");
+require("dotenv").config();
 
 const app = express();
 
@@ -10,8 +11,9 @@ app.set("view engine", "ejs");
 
 app.use(express.static("public"));
 
+dbPassword = process.env.DB_PASSWORD;
 
-mongoose.connect("mongodb+srv://admin-jay:<PASSWORD></PASSWORD>@cluster0.dx6ei.mongodb.net/todolistDB", {useNewUrlParser: true});
+mongoose.connect(`mongodb+srv://admin-jay:${dbPassword}@jaycluster.dx6ei.mongodb.net/todolistDB`, {useNewUrlParser: true});
 
 const itemsSchema = new mongoose.Schema({
   name: String
@@ -77,7 +79,7 @@ app.get("/:customListname", function(req, res) {
           name: customListname,  
           items: defaultItems  
         })
-        list.save();
+         list.save();
         res.redirect("/" + customListname)
       } else {
           //Show the existing list
@@ -135,6 +137,11 @@ app.post("/delete", function(req, res) {
   }
 })
 
+let port = process.env.PORT 
+if (port == null || port == "") {
+  port = 8000;
+}
+
 app.listen(3000, function () {
-  console.log("Server is running on port 3000...");
+  console.log("Server has started successfully!");
 });
