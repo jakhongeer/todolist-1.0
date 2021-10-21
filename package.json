@@ -12,6 +12,9 @@
   },
   "author": "Jakhongir Nagmatov",
   "license": "ISC",
+  "engines": {
+    "node": "14.17.6"
+  },
   "bugs": {
     "url": "https://github.com/jaykhans/todolist-1.0/issues"
   },
