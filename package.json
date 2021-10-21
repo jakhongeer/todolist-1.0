@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jakhongeer/todolist-1.0.git"
+    "url": "git+https://github.com/jaykhans/todolist-1.0.git"
   },
   "author": "Jakhongir Nagmatov",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jakhongeer/todolist-1.0/issues"
+    "url": "https://github.com/jaykhans/todolist-1.0/issues"
   },
-  "homepage": "https://github.com/jakhongeer/todolist-1.0#readme",
+  "homepage": "https://github.com/jaykhans/todolist-1.0#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
     "dotenv": "^10.0.0",
