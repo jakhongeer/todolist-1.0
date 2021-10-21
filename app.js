@@ -70,23 +70,27 @@ app.get("/", function (req, res) {
 app.get("/:customListname", function(req, res) {
   // when after "/" in the url written name of the list, that list will be created or will go to that list if exists.
   const customListname = _.capitalize(req.params.customListname);
-
-  List.findOne({name: customListname}, function(err, listFound) {
-    if (!err) {
-      if (!listFound){
-        //Create the list 
-        const list = new List({
-          name: customListname,  
-          items: defaultItems  
-        })
-         list.save();
-        res.redirect("/" + customListname)
-      } else {
-          //Show the existing list
-          res.render('list', { listTitle: listFound.name, newListItems: listFound.items })
-      }
-    } 
-  })
+  if (customListname === "favicon.ico") {
+    res.redirect("/");
+  } else {
+    List.findOne({name: customListname}, function(err, listFound) {
+      if (!err) {
+        if (!listFound){
+          //Create the list 
+          const list = new List({
+            name: customListname,  
+            items: defaultItems  
+          })
+           list.save();
+          res.redirect("/" + customListname)
+        } else {
+            //Show the existing list
+            res.render('list', { listTitle: listFound.name, newListItems: listFound.items })
+        }
+      } 
+    })
+  }
+  
     
 });
 
